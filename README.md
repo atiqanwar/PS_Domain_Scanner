@@ -4,6 +4,7 @@ It gives output about domains' IP address, HTTP Response, Status Code, Headers a
 
 ## Purpose
 I have created this script to monitor and check diffrent domains hosted by an organization based upon minimal possible scripting resource available i.e. PowerShell.
+This script ignores TLS/SSL errors, which often enforced my mordern browsers (HSTS Protection). 
 
 ## Usage
 Search and update following rows with source and destinition files respectively (full or relative OS path). **Do not remove quoation marks (").**
