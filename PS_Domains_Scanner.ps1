@@ -1,4 +1,5 @@
-﻿add-type @"
+﻿// Below code is to ignore TLS/SSL errors
+ add-type @"
     using System.Net;
     using System.Security.Cryptography.X509Certificates;
     public class TrustAllCertsPolicy : ICertificatePolicy {
@@ -11,8 +12,9 @@
 "@
 [System.Net.ServicePointManager]::CertificatePolicy = New-Object TrustAllCertsPolicy
 
-$src = "C:\Users\8928\Desktop\domainlist.txt"
-$dst = "C:\Users\8928\Desktop\domains.csv"
+//Change Following Lines
+$src = "<Path to file>\domainlist.txt"
+$dst = "<Path to file>\domains.csv"
 
 Remove-Item -Path $dst -Force
 ForEach ($domain in Get-Content $src){
