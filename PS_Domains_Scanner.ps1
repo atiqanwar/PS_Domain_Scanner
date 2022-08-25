@@ -1,4 +1,4 @@
-﻿// Below code is to ignore TLS/SSL errors
+# Below code is to ignore TLS/SSL errors
  add-type @"
     using System.Net;
     using System.Security.Cryptography.X509Certificates;
@@ -12,7 +12,7 @@
 "@
 [System.Net.ServicePointManager]::CertificatePolicy = New-Object TrustAllCertsPolicy
 
-//Change Following Lines
+# Change Following Lines
 $src = "<Path to file>\domainlist.txt"
 $dst = "<Path to file>\domains.csv"
 
@@ -33,8 +33,8 @@ ForEach ($domain in Get-Content $src){
         $header = $_.Exception.Response.Headers
     }
         
-    $file = New-Object PSObject -Property @{'Domain' = $domain ;
-        'IP Address' = (Out-String -InputObject (Resolve-DnsName -Name $domain).IPAddress).Trim() ;
+    $file = New-Object PSObject -Property @{'Domain' = Trim($domain) ;
+        'IP Address' = (Out-String -InputObject (Resolve-DnsName -Name Trim($domain)).IPAddress).Trim() ;
         'HTTP Status' = $statuscode ;
         'HTTP Status Description' = $statusdescription ;
         'Headers' = (Out-String -InputObject $header).Trim()
